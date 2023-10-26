@@ -1,0 +1,44 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: white;
+    color: black;
+}
+
+#loginContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+#content {
+    padding: 20px;
+}
+
+.person {
+    border: 1px solid black;
+    padding: 10px;
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+.person span {
+    margin: 0 10px;
+}
+
+#content {
+    padding: 20px;
+    width: 50%;          /* Ein Drittel der Bildschirmbreite */
+    margin: 0 auto;      /* Mittig platziert */
+    box-sizing: border-box; /* Damit Padding im Gesamtmaß berücksichtigt wird */
+    height: 100vh;       /* Volle Bildschirmhöhe */
+    overflow-y: auto;    /* Scrollbar, falls der Inhalt länger ist als der Bildschirm */
+}
+
+img {
+    width: 100%;         /* Bildbreite an den Container anpassen */
+    height: auto;        /* Höhe automatisch anpassen, um das Seitenverhältnis beizubehalten */
+    display: block;      /* Entfernt standardmäßige Abstände unterhalb des Bildes */
+    margin: 20px 0;      /* Etwas Abstand oben und unten hinzufügen */
+}
