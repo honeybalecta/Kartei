@@ -28,17 +28,15 @@ function login() {
 
 function showList() {
     const content = document.getElementById('content');
-    
-    // Inhalte des "content" div löschen.
     content.innerHTML = '';
-
-    // Einfügen eines Suchfelds und eines Such-Buttons am Anfang der Liste.
+    
     content.innerHTML = `<input type="text" id="searchBox" placeholder="Suche...">
                          <button onclick="filterList()">Suchen</button>`;
 
     for (let person of database) {
+        console.log('Kennziffer:', person.Kennziffer);
         content.innerHTML += `
-            <div class="person" onclick="showPerson(${person.Kennziffer})">
+            <div class="person" onclick="showPerson('${person.Kennziffer}')">
                 <span>${person.Kennziffer}</span>
                 <span>${person.Nachname}</span>
                 <span>${person.Vorname}</span>
@@ -50,6 +48,11 @@ function showList() {
 
 function showPerson(kennziffer) {
     const person = database.find(p => p.Kennziffer === kennziffer);
+
+    if (!person) {
+        console.error('Person mit Kennziffer', kennziffer, 'nicht gefunden.');
+        return;
+    }
 
     const content = document.getElementById('content');
     content.innerHTML = `
@@ -70,7 +73,7 @@ function filterList() {
     const value = document.getElementById('searchBox').value;
 
     const filteredPersons = database.filter(p => 
-        p.Kennziffer.toString().includes(value) || 
+        p.Kennziffer.includes(value) || 
         p.Vorname.toLowerCase().includes(value.toLowerCase()) ||
         p.Nachname.toLowerCase().includes(value.toLowerCase())
     );
@@ -78,13 +81,12 @@ function filterList() {
     const content = document.getElementById('content');
     content.innerHTML = '';
 
-    // Einfügen eines Suchfelds und eines Such-Buttons am Anfang der Liste.
     content.innerHTML = `<input type="text" id="searchBox" value="${value}" placeholder="Suche...">
                          <button onclick="filterList()">Suchen</button>`;
 
     for (let person of filteredPersons) {
         content.innerHTML += `
-            <div class="person" onclick="showPerson(${person.Kennziffer})">
+            <div class="person" onclick="showPerson('${person.Kennziffer}')">
                 <span>${person.Kennziffer}</span>
                 <span>${person.Nachname}</span>
                 <span>${person.Vorname}</span>
